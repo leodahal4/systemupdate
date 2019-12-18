@@ -8,7 +8,9 @@ Recomended::
 
 
   	$user: ./install.sh
-    
+
 This will install this project on your system and you can run using
-   
-    $user: update 
+
+    $user: update
+# Designed and developed by
+    Pro-X
