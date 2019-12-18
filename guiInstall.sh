@@ -1,4 +1,3 @@
-#!/bin/bash
 function checkZenity(){
   tool='zenity'
   dpkg -s $tool &> /dev/null
@@ -37,8 +36,10 @@ function installPython(){
 }
 checkZenity
 installPython
+sleep 2
+clear
 python3 helper.py | zenity --progress --title "System Updater" --width=500 --height=500 --auto-close
 #install | zenity --progress --title "System Updater" --width=500 --height=500 --auto-close
-zenity --info --title "System Updater" --text "Installation Finished\nYou can now call the System Updater from terminal using the command\n\n\t\t'update'" --width=300 --height=300
+#clear
 clear
 exit 0
