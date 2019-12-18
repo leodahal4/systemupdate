@@ -1,8 +1,19 @@
 import subprocess
+import time
 
 print("Enter password:")
 subprocess.call("sudo sync",shell=True)
 subprocess.call("clear",shell=True)
+
+hold = "Starting the updating process"
+for i in range(6):
+    if len(hold) < 33:
+        hold += "."
+    else:
+        hold = "Starting the updating process."
+    subprocess.call("clear",shell=True)
+    print(hold)
+    time.sleep(1)
 
 subprocess.call('sudo sync  | sudo tee /proc/sys/vm/drop_caches', shell= True)
 subprocess.call('clear', shell=True)
@@ -28,6 +39,7 @@ subprocess.call("clear", shell=True)
 print("[+] Checking If any errors occurred.[+]")
 subprocess.call("sudo apt --fix-broken install --yes", shell=True)
 
+subprocess.call("clear",shell=True)
 print("[+] Final touch for update [+]")
 subprocess.call("sudo apt update",shell=True)
 subprocess.call('clear',shell=True)

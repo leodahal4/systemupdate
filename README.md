@@ -5,12 +5,12 @@ You can use this project and get rid of updating the system manually everyday. Y
 
 Recomended::
 
-  	$user: sudo chmod +x install.sh
+  	$user: sudo chmod +x guiInstall.sh
 
 
-  	$user: ./install.sh
+  	$user: ./guiInstall.sh
       OR
-    $user: sudo ./install.sh
+    $user: sudo ./guiInstall.sh
 
 This will install this project on your system and you can run using
 

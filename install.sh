@@ -20,13 +20,14 @@ installUpdater(){
   sudo mkdir /etc/"updater"
   sleep 2
   echo "[+] Copying the files [+]"
-  fileText="clear \n echo 'Please wait calling the system functions'\n echo 'Sit back man. '\n echo 'Get on your own work'\n sleep 5\n clear\n python3 /etc/'System Updater files'/*.py"
+  fileText="clear\n python3 /etc/updater/*.py"
   sudo echo -e $fileText > update
   sudo mv update /bin/
   sudo chmod +x /bin/update
-  sudo cp main.py /etc/"update"/
+  sudo cp toBeInstalled.py /etc/"updater"/
   sleep 3
   clear
+
   tool="python3"
   dpkg -s $tool &> /dev/null
       if [ $? -ne 0 ]
@@ -47,12 +48,13 @@ installUpdater(){
 
 while true; do
   clear
-  echo -e "If you want to read the Documentation then,\nPress: d\n\t'q' for Quit\n"
-  read -p "Do you want to install the software? y or n" yn
-  case $yn in
+  echo -e "If you want to read the Documentation then,\nPress: d\n\t'\033[0;31mq\033[0m' for Quit\n"
+  echo -e "Do you want to install the software? (\033[0;31my\033[0m or \033[0;31mn\033[0m)"
+  read -p "" yn
+case $yn in
     [Yy]* ) installUpdater;break;;
-    [Nn]* ) clear; echo -e "Ok\nThank you\nBye Bye" ;exit;;
-    [Dd]* ) echo -e "Press 'q' to quit the Documentation\n";sleep 3; less README.md; ./install.sh;;
+    [Nn]* ) clear; echo -e "\033[0;31mAborted By User\033[0m" ;exit;;
+    [Dd]* ) echo -e "Press '\033[0;31mq\033[0m' to quit the Documentation\n";sleep 3; less README.md; ./install.sh;;
     * ) echo "Please answer Yes(y) or No(n).";;
   esac
 done
