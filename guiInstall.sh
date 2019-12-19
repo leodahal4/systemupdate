@@ -34,6 +34,11 @@ function installPython(){
             echo "100"
       fi
 }
+if [ $UID -ne 0 ]
+then
+  echo "Enter your password:"
+  sudo sync
+fi
 checkZenity
 installPython
 sleep 2
