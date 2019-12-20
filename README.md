@@ -3,6 +3,11 @@
 Mini python project to keep your system upto date using system core commands.
 You can use this project and get rid of updating the system manually everyday. You can enter just one command and leave this tool to do it's work.
 
+    You can start the installation process using
+
+        $user: sudo chmod +x install.sh
+        $user: ./install.sh
+
 Recomended::
 
   	$user: sudo chmod +x guiInstall.sh
