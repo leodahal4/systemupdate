@@ -1,7 +1,12 @@
 import subprocess
 import time
 
-def continueInstallation():
+def continueUpdating():
+
+    subprocess.call("echo "" > /etc/updater/started", shell=True)
+    subprocess.call("python3 /etc/updater/notifier.py",shell=True)
+    time.sleep(2)
+    
     hold = "Starting the updating process"
     for i in range(9):
         if len(hold) < 32:
@@ -40,15 +45,19 @@ def continueInstallation():
     print("[+] Final touch for update [+]")
     subprocess.call("sudo apt update",shell=True)
     subprocess.call('clear',shell=True)
+
+    subprocess.call("rm /etc/updater/started",shell=True)
+    subprocess.call("python3 /etc/updater/notifier.py", shell=True)
+    
     print('[+] Congrats Your System Is Fully Updated Now [+]')
     print('\nContact me if you wish..\n https://github.com/leodahal4/')
 
 
 if subprocess.call("$UID", shell=True) == 0:
     subprocess.call("clear",shell=True)
-    continueInstallation()
+    continueUpdating()
 else:
     print("Enter password:")
     subprocess.call("sudo sync",shell=True)
     subprocess.call("clear",shell=True)
-    continueInstallation()
+    continueUpdating()

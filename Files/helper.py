@@ -40,9 +40,10 @@ def installFiles():
         try:
             removeIfInstalled()
             subprocess.call("sudo mkdir /etc/'updater'", shell=True)
-            subprocess.call("sudo echo -e 'clear\n python3 /etc/updater/*.py' > update", shell=True)
+            subprocess.call("sudo echo -e 'clear\npython3 /etc/updater/toBeInstalled.py\n' > update", shell=True)
             subprocess.call("sudo mv update /bin/", shell=True)
             subprocess.call("sudo chmod +x /bin/update", shell=True)
+            subprocess.call("sudo cp Files/notifier.py /etc/updater/", shell=True)
             subprocess.call("sudo cp Files/toBeInstalled.py /etc/'updater'/", shell=True)
             return 1
         except:
@@ -51,9 +52,10 @@ def installFiles():
         try:
             removeIfInstalled()
             subprocess.call("sudo mkdir /etc/'updater'", shell=True)
-            subprocess.call("sudo echo -e 'clear\n python3 /etc/updater/*.py' > update", shell=True)
+            subprocess.call("sudo echo -e 'clear\npython3 /etc/updater/toBeInstalled.py\n' > update", shell=True)
             subprocess.call("sudo mv update /bin/", shell=True)
             subprocess.call("sudo chmod +x /bin/update", shell=True)
+            subprocess.call("sudo cp systemupdate/Files/notifier.py", shell=True)
             subprocess.call("sudo cp systemupdate/Files/toBeInstalled.py /etc/'updater'/", shell=True)
             return 1
         except:
@@ -69,8 +71,9 @@ def installFiles():
                 subprocess.call("echo '# Downloading from GitHub'", shell=True)
                 subprocess.call("git clone 'https://github.com/leodahal4/systemupdate.git'", shell=True)
                 subprocess.call("sudo mkdir /etc/'updater'", shell=True)
-                subprocess.call("sudo echo -e 'clear\n python3 /etc/updater/*.py' > update", shell=True)
+                subprocess.call("sudo echo -e 'clear\npython3 /etc/updater/toBeInstalled.py\n' > update", shell=True)
                 subprocess.call("sudo mv update /bin/", shell=True)
+                subprocess.call("sudo cp systemupdate/Files/notifier.py", shell=True)
                 subprocess.call("sudo chmod +x /bin/update", shell=True)
                 subprocess.call("sudo cp systemupdate/Files/toBeInstalled.py /etc/'updater'/", shell=True)
                 return 1
@@ -78,7 +81,7 @@ def installFiles():
                 subprocess.call("echo 'Too Many Errors occurred\nTry connecting to the internet and try installing\nOR\nYou can copy the complete installation files and try again' > errorLogs.txt",shell=True)
                 return 0
         except:
-            subprocess.call("echo -e 'error in Internet\n"+print(checkInternet())+"' > yay.txt",shell=True)
+            # subprocess.call("echo -e 'error in Internet\n"+print(checkInternet())+"' > yay.txt",shell=True)
             return 0
 
 
@@ -104,9 +107,18 @@ def workTODO():
         progress()
         subprocess.call("zenity --info --title 'System Updater' --text 'Installation Finished\nYou can now call the System Updater from terminal using the command\n\n\t\t'update'' --width=300 --height=300",shell=True)
     else:
-        #subprocess.call("gnome-terminal -x sh -c \"echo 'Check the error logs';exec bash\"",shell=True)
-        #subprocess.call("xterm -hold -e 'echo \"Check the error logs\"'",shell=True)
+        # subprocess.call("gnome-terminal -x sh -c \"echo 'Check the error logs';exec bash\"",shell=True)
+        # subprocess.call("xterm -hold -e 'echo \"Check the error logs\"'",shell=True)
         subprocess.call("zenity --error --title 'System Updater' --text 'Check The Error Logs' --width=100 --height=100",shell=True)
         return 0
 
+def installNotify():
+    if not(path.exists("/usr/local/lib/python2.7/dist-packages/notify2.py")): #or  path.exists("/usr/local/lib/python3.7/dist-packages/notify2.py")):
+        print("Installing.. ")
+        subprocess.call("pip install notify2",shell=True)    
+    else:
+        pass
+
+
+installNotify()
 workTODO()
