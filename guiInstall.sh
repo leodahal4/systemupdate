@@ -39,12 +39,18 @@ then
   echo "Enter your password:"
   sudo sync
 fi
-checkZenity
-checkPython
-sleep 2
-clear
-python3 Files/helper.py | zenity --progress --title "System Updater" --width=500 --height=500 --auto-close
-#install | zenity --progress --title "System Updater" --width=500 --height=500 --auto-close
-#clear
-clear
+
+zenity --question --width 300 --title 'System Updater' --text 'Do you want to install this software on your system?'
+
+if [ $? -eq 0 ]
+then
+    checkZenity
+    checkPython
+    sleep 2
+    clear
+    python3 Files/helper.py | zenity --progress --title "System Updater" --width=500 --height=500 --auto-close
+    #install | zenity --progress --title "System Updater" --width=500 --height=500 --auto-close
+    #clear
+    clear
+fi
 exit 0

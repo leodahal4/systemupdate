@@ -46,6 +46,7 @@ installUpdater(){
   sudo python3 Files/checkFile.py
   sleep 4
   clear
+  python3 Files/finishedNotify.py
   echo -e "\nSystem Updater is Installed\n\nContinue Updating using ' \033[0;31mupdate\033[0m ' command\n"
 }
 

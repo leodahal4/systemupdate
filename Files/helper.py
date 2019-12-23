@@ -105,6 +105,7 @@ def workTODO():
         timePassed = 100
         time.sleep(3)
         progress()
+        subprocess.call("python3 Files/finishedNotify.py", shell=True)
         subprocess.call("zenity --info --title 'System Updater' --text 'Installation Finished\nYou can now call the System Updater from terminal using the command\n\n\t\t'update'' --width=300 --height=300",shell=True)
     else:
         # subprocess.call("gnome-terminal -x sh -c \"echo 'Check the error logs';exec bash\"",shell=True)
@@ -113,9 +114,9 @@ def workTODO():
         return 0
 
 def installNotify():
-    if not(path.exists("/usr/local/lib/python2.7/dist-packages/notify2.py")): #or  path.exists("/usr/local/lib/python3.7/dist-packages/notify2.py")):
-        print("Installing.. ")
-        subprocess.call("pip install notify2",shell=True)    
+    if not(path.exists("/usr/local/lib/python3.7/dist-packages/notify2.py")):
+        print("Installing Notify2 module for python3 ")
+        subprocess.call("pip3 install notify2", shell=True)
     else:
         pass
 

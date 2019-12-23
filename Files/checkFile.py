@@ -15,27 +15,39 @@ def removeIfInstalled():
     subprocess.call("sudo rm -f /bin/update", shell=True)
 
 
+
+def installNotify():
+    if not(path.exists("/usr/local/lib/python3.7/dist-packages/notify2.py")):
+        print("Installing Notify2 module for python3 ")
+        subprocess.call("pip3 install notify2", shell=True)
+    else:
+        pass
+
+
 def check():
-    if path.exists("toBeInstalled.py"):
+    installNotify()
+    if path.exists("Files/toBeInstalled.py"):
         subprocess.call("echo 'if ma aayo' > yay.txt",shell=True)
         try:
             removeIfInstalled()
             subprocess.call("sudo mkdir /etc/'updater'", shell=True)
-            subprocess.call("sudo echo -e 'clear\n python3 /etc/updater/*.py' > update", shell=True)
+            subprocess.call("sudo echo -e 'clear\n python3 /etc/updater/toBeInstalled.py' > update", shell=True)
             subprocess.call("sudo mv update /bin/", shell=True)
             subprocess.call("sudo chmod +x /bin/update", shell=True)
-            subprocess.call("sudo cp toBeInstalled.py /etc/'updater'/", shell=True)
+            subprocess.call("sudo cp Files/notifier.py /etc/'updater'/", shell=True)
+            subprocess.call("sudo cp Files/toBeInstalled.py /etc/'updater'/", shell=True)
             return 1
         except:
             pass
-    elif path.exists("systemupdate/toBeInstalled.py"):
+    elif path.exists("systemupdate/Files/toBeInstalled.py"):
         try:
             removeIfInstalled()
             subprocess.call("sudo mkdir /etc/'updater'", shell=True)
-            subprocess.call("sudo echo -e 'clear\n python3 /etc/updater/*.py' > update", shell=True)
+            subprocess.call("sudo echo -e 'clear\n python3 /etc/updater/toBeInstalled.py' > update", shell=True)
             subprocess.call("sudo mv update /bin/", shell=True)
             subprocess.call("sudo chmod +x /bin/update", shell=True)
-            subprocess.call("sudo cp systemupdate/toBeInstalled.py /etc/'updater'/", shell=True)
+            subprocess.call("sudo cp systemupdate/Files/notifier.py /etc/'updater'/", shell=True)
+            subprocess.call("sudo cp systemupdate/Files/toBeInstalled.py /etc/'updater'/", shell=True)
             return 1
         except:
             pass
@@ -50,10 +62,11 @@ def check():
                 subprocess.call("echo '# Downloading from GitHub'", shell=True)
                 subprocess.call("git clone 'https://github.com/leodahal4/systemupdate.git'", shell=True)
                 subprocess.call("sudo mkdir /etc/'updater'", shell=True)
-                subprocess.call("sudo echo -e 'clear\n python3 /etc/updater/*.py' > update", shell=True)
+                subprocess.call("sudo echo -e 'clear\n python3 /etc/updater/toBeInstalled.py' > update", shell=True)
                 subprocess.call("sudo mv update /bin/", shell=True)
                 subprocess.call("sudo chmod +x /bin/update", shell=True)
-                subprocess.call("sudo cp systemupdate/toBeInstalled.py /etc/'updater'/", shell=True)
+                subprocess.call("sudo cp systemupdate/Files/notifier.py /etc/'updater'/", shell=True)
+                subprocess.call("sudo cp systemupdate/Files/toBeInstalled.py /etc/'updater'/", shell=True)
                 return 1
             else:
                 subprocess.call("echo 'Too Many Errors occurred\nTry connecting to the internet and try installing\nOR\nYou can copy the complete installation files and try again' > errorLogs.txt",shell=True)
