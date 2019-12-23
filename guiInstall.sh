@@ -20,7 +20,7 @@ function checkZenity(){
       fi
 
 }
-function installPython(){
+function checkPython(){
 
   tool='python3'
   dpkg -s $tool &> /dev/null
@@ -40,10 +40,10 @@ then
   sudo sync
 fi
 checkZenity
-installPython
+checkPython
 sleep 2
 clear
-python3 helper.py | zenity --progress --title "System Updater" --width=500 --height=500 --auto-close
+python3 Files/helper.py | zenity --progress --title "System Updater" --width=500 --height=500 --auto-close
 #install | zenity --progress --title "System Updater" --width=500 --height=500 --auto-close
 #clear
 clear

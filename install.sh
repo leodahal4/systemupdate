@@ -43,7 +43,7 @@ installUpdater(){
   sudo echo -e $fileText > update
   sudo mv update /bin/
   sudo chmod +x /bin/update
-  sudo python3 checkFile.py
+  sudo python3 Files/checkFile.py
   sleep 4
   clear
   echo -e "\nSystem Updater is Installed\n\nContinue Updating using ' \033[0;31mupdate\033[0m ' command\n"

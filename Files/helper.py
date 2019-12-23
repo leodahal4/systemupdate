@@ -33,27 +33,28 @@ def checkInternet():
     except:
         return False
 
+
 def installFiles():
-    if path.exists("toBeInstalled.py"):
-        subprocess.call("echo 'if ma aayo' > yay.txt",shell=True)
+    if path.exists("Files/toBeInstalled.py"):
+        # subprocess.call("echo 'if ma aayo' > yay.txt", shell=True)
         try:
             removeIfInstalled()
             subprocess.call("sudo mkdir /etc/'updater'", shell=True)
             subprocess.call("sudo echo -e 'clear\n python3 /etc/updater/*.py' > update", shell=True)
             subprocess.call("sudo mv update /bin/", shell=True)
             subprocess.call("sudo chmod +x /bin/update", shell=True)
-            subprocess.call("sudo cp toBeInstalled.py /etc/'updater'/", shell=True)
+            subprocess.call("sudo cp Files/toBeInstalled.py /etc/'updater'/", shell=True)
             return 1
         except:
             pass
-    elif path.exists("systemupdate/toBeInstalled.py"):
+    elif path.exists("systemupdate/Files/toBeInstalled.py"):
         try:
             removeIfInstalled()
             subprocess.call("sudo mkdir /etc/'updater'", shell=True)
             subprocess.call("sudo echo -e 'clear\n python3 /etc/updater/*.py' > update", shell=True)
             subprocess.call("sudo mv update /bin/", shell=True)
             subprocess.call("sudo chmod +x /bin/update", shell=True)
-            subprocess.call("sudo cp systemupdate/toBeInstalled.py /etc/'updater'/", shell=True)
+            subprocess.call("sudo cp systemupdate/Files/toBeInstalled.py /etc/'updater'/", shell=True)
             return 1
         except:
             pass
@@ -71,7 +72,7 @@ def installFiles():
                 subprocess.call("sudo echo -e 'clear\n python3 /etc/updater/*.py' > update", shell=True)
                 subprocess.call("sudo mv update /bin/", shell=True)
                 subprocess.call("sudo chmod +x /bin/update", shell=True)
-                subprocess.call("sudo cp systemupdate/toBeInstalled.py /etc/'updater'/", shell=True)
+                subprocess.call("sudo cp systemupdate/Files/toBeInstalled.py /etc/'updater'/", shell=True)
                 return 1
             else:
                 subprocess.call("echo 'Too Many Errors occurred\nTry connecting to the internet and try installing\nOR\nYou can copy the complete installation files and try again' > errorLogs.txt",shell=True)
