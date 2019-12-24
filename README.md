@@ -23,5 +23,11 @@ This will install this project on your system and you can run using
     
 This tool is developed using Python and Bash, so anyone who want to contribute can mail me.
 
+
+
+To uninstall this software just call 
+    uninstallUpdate
+on the terminal, and the uninstallation process will be started.
+
 # designed and developed by
     Pro-X

@@ -1,0 +1,19 @@
+function uninstallUpdater(){
+    echo "Removiing the Updater files"
+    sudo rm -r /etc/updater
+    sleep 3
+    echo "[+] Completeting the uninstallation process [+]"
+    sleep 3
+    sudo rm /bin/update
+    echo "uninstalled."
+}
+
+
+echo "Do you sure want to uninstall the software?"
+read -p "" confirm
+
+case $confirm in
+    [Yy]*) echo "Uninstalling the software..";uninstallUpdater; exit 0;;
+    [Nn]*) echo -e "Uninstall process aborted by user.\nHope you are enjoying this tool."; exit 0;;
+
+esac

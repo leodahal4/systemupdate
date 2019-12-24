@@ -51,6 +51,7 @@ then
     python3 Files/helper.py | zenity --progress --title "System Updater" --width=500 --height=500 --auto-close
     #install | zenity --progress --title "System Updater" --width=500 --height=500 --auto-close
     #clear
-    clear
+    exit 0 
 fi
+echo -e "Aborted By User\n\n"
 exit 0

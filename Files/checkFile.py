@@ -1,6 +1,8 @@
 import subprocess
 from os import path
 import urllib.request
+
+
 def checkInternet():
     host = 'http://google.com'
     try:
@@ -15,7 +17,6 @@ def removeIfInstalled():
     subprocess.call("sudo rm -f /bin/update", shell=True)
 
 
-
 def installNotify():
     if not(path.exists("/usr/local/lib/python3.7/dist-packages/notify2.py")):
         print("Installing Notify2 module for python3 ")
@@ -27,7 +28,7 @@ def installNotify():
 def check():
     installNotify()
     if path.exists("Files/toBeInstalled.py"):
-        subprocess.call("echo 'if ma aayo' > yay.txt",shell=True)
+        # subprocess.call("echo 'if ma aayo' > yay.txt", shell=True)
         try:
             removeIfInstalled()
             subprocess.call("sudo mkdir /etc/'updater'", shell=True)
@@ -35,6 +36,7 @@ def check():
             subprocess.call("sudo mv update /bin/", shell=True)
             subprocess.call("sudo chmod +x /bin/update", shell=True)
             subprocess.call("sudo cp Files/notifier.py /etc/'updater'/", shell=True)
+            subprocess.call("sudo cp Files/updateUninstall /bin/", shell=True)
             subprocess.call("sudo cp Files/toBeInstalled.py /etc/'updater'/", shell=True)
             return 1
         except:
@@ -47,6 +49,7 @@ def check():
             subprocess.call("sudo mv update /bin/", shell=True)
             subprocess.call("sudo chmod +x /bin/update", shell=True)
             subprocess.call("sudo cp systemupdate/Files/notifier.py /etc/'updater'/", shell=True)
+            subprocess.call("sudo cp systemupdate/Files/updateUninstall /bin/", shell=True)
             subprocess.call("sudo cp systemupdate/Files/toBeInstalled.py /etc/'updater'/", shell=True)
             return 1
         except:
@@ -66,6 +69,7 @@ def check():
                 subprocess.call("sudo mv update /bin/", shell=True)
                 subprocess.call("sudo chmod +x /bin/update", shell=True)
                 subprocess.call("sudo cp systemupdate/Files/notifier.py /etc/'updater'/", shell=True)
+                subprocess.call("sudo cp systemupdate/Files/updateUninstall /bin/", shell=True)
                 subprocess.call("sudo cp systemupdate/Files/toBeInstalled.py /etc/'updater'/", shell=True)
                 return 1
             else:
@@ -74,5 +78,6 @@ def check():
         except:
             subprocess.call("echo -e 'error in Internet\n"+print(checkInternet())+"' > yay.txt",shell=True)
             return 0
+
 
 check()

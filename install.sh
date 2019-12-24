@@ -43,6 +43,7 @@ installUpdater(){
   sudo echo -e $fileText > update
   sudo mv update /bin/
   sudo chmod +x /bin/update
+  # sudo cp Files/uninstaller.sh /etc/updater/
   sudo python3 Files/checkFile.py
   sleep 4
   clear
