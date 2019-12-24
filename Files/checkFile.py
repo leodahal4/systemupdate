@@ -4,6 +4,8 @@ import urllib.request
 
 
 def checkInternet():
+
+    #check internet connection for downloading the repo for installation
     host = 'http://google.com'
     try:
         urllib.request.urlopen(host)  # Python 3.x
@@ -13,11 +15,14 @@ def checkInternet():
 
 
 def removeIfInstalled():
+    #Remove the previous installed files(IF), which may cause trouble
     subprocess.call("sudo rm -r -f /etc/'updater'", shell=True)
     subprocess.call("sudo rm -f /bin/update", shell=True)
 
 
 def installNotify():
+
+    #install the notify2 module on the system for notificating the user
     if not(path.exists("/usr/local/lib/python3.7/dist-packages/notify2.py")):
         print("Installing Notify2 module for python3 ")
         subprocess.call("pip3 install notify2", shell=True)
@@ -26,9 +31,12 @@ def installNotify():
 
 
 def check():
-    installNotify()
-    if path.exists("Files/toBeInstalled.py"):
-        # subprocess.call("echo 'if ma aayo' > yay.txt", shell=True)
+    installNotify() # install notify2 first
+
+    #check if there is the file to be installed or not
+
+    #check on the normal directory
+    if path.exists("Files/toBeInstalled.py") and path.exists("Files/notifier.py"):
         try:
             removeIfInstalled()
             subprocess.call("sudo mkdir /etc/'updater'", shell=True)
@@ -41,7 +49,8 @@ def check():
             return 1
         except:
             pass
-    elif path.exists("systemupdate/Files/toBeInstalled.py"):
+    #check if already git repo is downloaded
+    elif path.exists("systemupdate/Files/toBeInstalled.py") and path.exists("systemupdate/Files/notifier.py"):
         try:
             removeIfInstalled()
             subprocess.call("sudo mkdir /etc/'updater'", shell=True)
@@ -54,8 +63,10 @@ def check():
             return 1
         except:
             pass
+    #download the repo and start installation using the files downloaded from the repo
     else:
         try:
+            #check internet connection for downloading
             if checkInternet():
                 removeIfInstalled()
                 subprocess.call("echo '# [+] Error Installing [+]'", shell=True)
@@ -79,5 +90,5 @@ def check():
             subprocess.call("echo -e 'error in Internet\n"+print(checkInternet())+"' > yay.txt",shell=True)
             return 0
 
-
+#start checking from whether the necessary files are there or not.
 check()
