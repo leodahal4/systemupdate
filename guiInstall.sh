@@ -44,6 +44,27 @@ function checkZenity(){
 
 }
 
+
+makeTemp(){
+    #make a temp folder for keeping the temporary needed files
+    mkdir .temp
+}
+
+removeTemp(){
+    #remove the files in the temp directory and remove the folder too.
+    rm .temp/*
+    rm -r .temp
+}
+
+finishedNotifier(){
+  #Create a child python file for notifying the user that the installation is completed
+  modules="import time\nimport notify2\nfrom os import path"
+  title="System Updater Installed"
+  description="The System Updater tool has been sucessfully installed. You can now use this tool using update command."
+  echo -e "$modules\nnotificationMsg = {'title': '$title', 'description': '$description'}\nnotify2.init('News Notifier')\nnotify = notify2.Notification(None, icon='')\nnotify.set_urgency(notify2.URGENCY_NORMAL)\nnotify.set_timeout(100)\nfor i in range(1):\n\tnotify.update(notificationMsg['title'], notificationMsg['description'])\n\tnotify.show()\n\ttime.sleep(1)" > .temp/finished
+  python3 .temp/finished
+}
+
 #check if python3 is installed on the system or not
 function checkPython(){
   tool='python3'
@@ -69,6 +90,7 @@ then
 fi
 
 initialize(){
+    makeTemp
   #start the installation
     checkZenity
     checkPython
@@ -84,7 +106,9 @@ then
     initialize
     #call the helper file for installing the software
     python3 Files/helper.py | zenity --progress --title "System Updater" --width=500 --height=500 --auto-close
+    finishedNotifier
     #clear
+    removeTemp
     exit 0
 fi
 

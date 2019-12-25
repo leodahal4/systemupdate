@@ -105,8 +105,8 @@ def workTODO():
         timePassed = 100
         time.sleep(3)
         progress()
-        subprocess.call("python3 Files/finishedNotify.py", shell=True)
-        subprocess.call("zenity --info --title 'System Updater' --text 'Installation Finished\nYou can now call the System Updater from terminal using the command\n\n\t\t'update'' --width=300 --height=300",shell=True)
+        # subprocess.call("python3 Files/finishedNotify.py", shell=True)
+        # subprocess.call("zenity --info --title 'System Updater' --text 'Installation Finished\nYou can now call the System Updater from terminal using the command\n\n\t\t'update'' --width=300 --height=300",shell=True)
     else:
         # subprocess.call("gnome-terminal -x sh -c \"echo 'Check the error logs';exec bash\"",shell=True)
         # subprocess.call("xterm -hold -e 'echo \"Check the error logs\"'",shell=True)
