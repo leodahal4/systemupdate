@@ -10,6 +10,15 @@
 #                                                                              #
 #                                                                              #
 ################################################################################
+
+#
+# This file is responsible for starting the installation process in the textual mode.
+#
+# This file first checks all the necessary tools required and installs if not innstalled
+# and then starts the installation process
+#
+
+
 finishedNotifier(){
   #Create a child python file for notifying the user that the installation is completed
   modules="import time\nimport notify2\nfrom os import path"

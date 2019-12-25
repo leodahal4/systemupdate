@@ -11,6 +11,13 @@
 #                                                                              #
 ################################################################################
 
+#
+#This file is responsible for gui installation process for the tool
+#
+#This file checks whether all the necessary tools required are installed or not 
+#and if not then installs the necessary tools and starts the gui installation process
+#
+
 #check if Zenity is installed on the system or not
 function checkZenity(){
   tool='zenity'
@@ -36,6 +43,7 @@ function checkZenity(){
       fi
 
 }
+
 #check if python3 is installed on the system or not
 function checkPython(){
   tool='python3'
