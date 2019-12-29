@@ -57,44 +57,39 @@ def continueUpdating():
         subprocess.call('dpkg --configure -a', shell=True)
 
     else:
-        print("There are packages to be upgraded")
+        # reconsigure the dpkg if there were any errors
+        subprocess.call('clear', shell=True)
+        print('[+] Configuring dpkg if there are any errors [+]')
+        subprocess.call('dpkg --configure -a', shell=True)
+
+        # upgrade the system
+        subprocess.call('clear', shell=True)
+        print('\n[+] Upgrading system [+]\n')
+        aptFunc('upgrade')
+        aptFunc('dist-upgrade')
+        aptFunc('full-upgrade')
+
+        # remove the unnecessary files downloaded while upgrading
+        subprocess.call('clear', shell=True)
+        print('\n[+] Cleaning the unnecessary files downloaded [+]\n')
+        aptFunc('autoremove')
+
+        # fix any errors if occured
+        subprocess.call("clear", shell=True)
+        print("[+] Checking If any errors occurred.[+]")
+        aptFunc('--fix-broken install')
+
+        # final touch for update
+        subprocess.call("clear", shell=True)
+        print("[+] Final touch for update [+]")
+        subprocess.call("sudo apt update", shell=True)
+        subprocess.call('clear', shell=True)
 
     # call the notifier for notifying the user that the process has been finished
     subprocess.call("rm /etc/updater/started", shell=True)
     subprocess.call("python3 /etc/updater/notifier.py", shell=True)
 
     finish()
-
-
-def fa():
-    # reconsigure the dpkg if there were any errors
-    subprocess.call('clear', shell=True)
-    print('[+] Configuring dpkg if there are any errors [+]')
-    subprocess.call('dpkg --configure -a', shell=True)
-
-    # upgrade the system
-    subprocess.call('clear', shell=True)
-    print('\n[+] Upgrading system [+]\n')
-    aptFunc('upgrade')
-    aptFunc('dist-upgrade')
-    aptFunc('full-upgrade')
-
-    # remove the unnecessary files downloaded while upgrading
-    subprocess.call('clear', shell=True)
-    print('\n[+] Cleaning the unnecessary files downloaded [+]\n')
-    aptFunc('autoremove')
-
-    # fix any errors if occured
-    subprocess.call("clear", shell=True)
-    print("[+] Checking If any errors occurred.[+]")
-    aptFunc('--fix-broken install')
-
-    # final touch for update
-    subprocess.call("clear", shell=True)
-    print("[+] Final touch for update [+]")
-    subprocess.call("sudo apt update", shell=True)
-    subprocess.call('clear', shell=True)
-
 
 # check if the user is root
 if subprocess.call("$UID", shell=True) == 0:
