@@ -14,7 +14,7 @@
 #
 #This file is responsible for gui installation process for the tool
 #
-#This file checks whether all the necessary tools required are installed or not 
+#This file checks whether all the necessary tools required are installed or not
 #and if not then installs the necessary tools and starts the gui installation process
 #
 
@@ -85,7 +85,7 @@ function checkPython(){
 if [ $UID -ne 0 ]
 then
   #if not ask for password
-  echo "Enter your password:"
+  # echo "Enter your password:"
   sudo sync
 fi
 
