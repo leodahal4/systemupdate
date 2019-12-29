@@ -1,7 +1,6 @@
-import subprocess
 from os import path
-import urllib.request
-from module import checkInternet
+import subprocess
+
 
 
 def removeIfInstalled():
@@ -11,7 +10,6 @@ def removeIfInstalled():
 
 
 def installNotify():
-
     #install the notify2 module on the system for notificating the user
     if not(path.exists("/usr/local/lib/python3.7/dist-packages/notify2.py")):
         print("Installing Notify2 module for python3 ")
@@ -19,10 +17,8 @@ def installNotify():
     else:
         pass
 
-
 def check():
     installNotify() # install notify2 first
-
     #check if there is the file to be installed or not
 
     #check on the normal directory
@@ -36,6 +32,7 @@ def check():
             subprocess.call("sudo cp Files/notifier.py /etc/'updater'/", shell=True)
             subprocess.call("sudo cp Files/updateUninstall /bin/", shell=True)
             subprocess.call("sudo cp Files/toBeInstalled.py /etc/'updater'/", shell=True)
+            subprocess.call("sudo cp Files/checkUpgrade.py /etc/'updater'/", shell=True)
             return 1
         except:
             pass
@@ -50,6 +47,7 @@ def check():
             subprocess.call("sudo cp systemupdate/Files/notifier.py /etc/'updater'/", shell=True)
             subprocess.call("sudo cp systemupdate/Files/updateUninstall /bin/", shell=True)
             subprocess.call("sudo cp systemupdate/Files/toBeInstalled.py /etc/'updater'/", shell=True)
+            subprocess.call("sudo cp systemupdate/Files/checkUpgrade.py /etc/'updater'/", shell=True)
             return 1
         except:
             pass
@@ -73,13 +71,11 @@ def check():
                 subprocess.call("sudo cp systemupdate/Files/notifier.py /etc/'updater'/", shell=True)
                 subprocess.call("sudo cp systemupdate/Files/updateUninstall /bin/", shell=True)
                 subprocess.call("sudo cp systemupdate/Files/toBeInstalled.py /etc/'updater'/", shell=True)
+                subprocess.call("sudo cp systemupdate/Files/checkUpgrade.py /etc/'updater'/", shell=True)
                 return 1
             else:
                 subprocess.call("echo 'Too Many Errors occurred\nTry connecting to the internet and try installing\nOR\nYou can copy the complete installation files and try again' > errorLogs.txt",shell=True)
                 return 0
         except:
-            subprocess.call("echo -e 'error in Internet\n"+print(checkInternet())+"' > yay.txt",shell=True)
+            subprocess.call("echo -e 'error in Internet\n"+print(checkInternet())+"' > errorLogs.txt",shell=True)
             return 0
-
-#start checking from whether the necessary files are there or not.
-check()

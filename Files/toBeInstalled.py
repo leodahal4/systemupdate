@@ -1,5 +1,15 @@
 import subprocess
 import time
+import checkUpgrade
+
+
+def aptFunc(command):
+    subprocess.call('sudo apt '+ command +' --yes', shell=True)
+
+def finish():
+    # Again just some extra...
+    print('[+] Congrats Your System Is Fully Updated Now [+]')
+    print('\nContact me if you wish..\n https://github.com/leodahal4/')
 
 
 def continueUpdating():
@@ -28,8 +38,27 @@ def continueUpdating():
 
     # update the system
     print('\n[+] Updating system [+]\n')
-    subprocess.call('sudo apt-get update', shell=True)
+    updateResult = subprocess.check_output('sudo apt update', shell=True)
 
+    if checkUpgrade.checkUpgrades(updateResult):
+        print("\n[+] No packages are to be upgraded [+]\n")
+        # reconsigure the dpkg if there were any errors
+        subprocess.call('clear', shell=True)
+        print('[+] Configuring dpkg if there are any errors [+]')
+        subprocess.call('dpkg --configure -a', shell=True)
+
+    else:
+        #print("There are packages to be upgraded")
+        fa()
+
+    # call the notifier for notifying the user that the process has been finished
+    subprocess.call("rm /etc/updater/started", shell=True)
+    subprocess.call("python3 /etc/updater/notifier.py", shell=True)
+
+    finish()
+
+
+def fa():
     # reconsigure the dpkg if there were any errors
     subprocess.call('clear', shell=True)
     print('[+] Configuring dpkg if there are any errors [+]')
@@ -38,33 +67,25 @@ def continueUpdating():
     # upgrade the system
     subprocess.call('clear', shell=True)
     print('\n[+] Upgrading system [+]\n')
-    subprocess.call('sudo apt-get upgrade --yes', shell=True)
-    subprocess.call('sudo apt-get dist-upgrade --yes', shell=True)
-    subprocess.call('sudo apt-get full-upgrade --yes', shell=True)
+    aptFunc('upgrade')
+    aptFunc('dist-upgrade')
+    aptFunc('full-upgrade')
 
     # remove the unnecessary files downloaded while upgrading
     subprocess.call('clear', shell=True)
     print('\n[+] Cleaning the unnecessary files downloaded [+]\n')
-    subprocess.call('sudo apt autoremove --yes', shell=True)
+    aptFunc('autoremove')
 
     # fix any errors if occured
     subprocess.call("clear", shell=True)
     print("[+] Checking If any errors occurred.[+]")
-    subprocess.call("sudo apt --fix-broken install --yes", shell=True)
+    aptFunc('--fix-broken install')
 
     # final touch for update
     subprocess.call("clear", shell=True)
     print("[+] Final touch for update [+]")
     subprocess.call("sudo apt update", shell=True)
     subprocess.call('clear', shell=True)
-
-    # call the notifier for notifying the user that the process has been finished
-    subprocess.call("rm /etc/updater/started", shell=True)
-    subprocess.call("python3 /etc/updater/notifier.py", shell=True)
-
-    # Again just some extra...
-    print('[+] Congrats Your System Is Fully Updated Now [+]')
-    print('\nContact me if you wish..\n https://github.com/leodahal4/')
 
 
 # check if the user is root

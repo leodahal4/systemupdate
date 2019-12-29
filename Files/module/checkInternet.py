@@ -1,6 +1,9 @@
 '''checkInternet
     This module checks whether the internet is connected or not using the below function
 '''
+
+import urllib.request
+
 def check(hostAddress = 'google.com'):
     '''Check(hostAddress):
         This function takes an argument to open the site provided as argument.
