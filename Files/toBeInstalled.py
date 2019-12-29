@@ -1,6 +1,7 @@
 import subprocess
 import time
-import checkUpgrade
+from module import checkUpgrade
+from module import checkInternet
 
 
 def aptFunc(command):
@@ -24,14 +25,22 @@ def continueUpdating():
     # actually start updating now.
     # just some extra.....
     hold = "Starting the updating process"
+    conn = checkInternet.check()
     for i in range(9):
         if len(hold) < 32:
             hold += "."
         else:
+            if conn:
+                pass
+            else:
+                subprocess.call('clear', shell=True)
+                print("[+] No internet connection [+]")
+                exit(0)
             hold = "Starting the updating process."
         subprocess.call("clear", shell=True)
         print(hold)
         time.sleep(1)
+
     # release memory for starting the updating the process
     subprocess.call('sudo sync  | sudo tee /proc/sys/vm/drop_caches', shell=True)
     subprocess.call('clear', shell=True)
@@ -48,8 +57,7 @@ def continueUpdating():
         subprocess.call('dpkg --configure -a', shell=True)
 
     else:
-        #print("There are packages to be upgraded")
-        fa()
+        print("There are packages to be upgraded")
 
     # call the notifier for notifying the user that the process has been finished
     subprocess.call("rm /etc/updater/started", shell=True)

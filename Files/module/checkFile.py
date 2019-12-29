@@ -32,7 +32,7 @@ def check():
             subprocess.call("sudo cp Files/notifier.py /etc/'updater'/", shell=True)
             subprocess.call("sudo cp Files/updateUninstall /bin/", shell=True)
             subprocess.call("sudo cp Files/toBeInstalled.py /etc/'updater'/", shell=True)
-            subprocess.call("sudo cp Files/checkUpgrade.py /etc/'updater'/", shell=True)
+            subprocess.call("sudo cp -r Files/module /etc/'updater'/", shell=True)
             return 1
         except:
             pass
@@ -47,7 +47,7 @@ def check():
             subprocess.call("sudo cp systemupdate/Files/notifier.py /etc/'updater'/", shell=True)
             subprocess.call("sudo cp systemupdate/Files/updateUninstall /bin/", shell=True)
             subprocess.call("sudo cp systemupdate/Files/toBeInstalled.py /etc/'updater'/", shell=True)
-            subprocess.call("sudo cp systemupdate/Files/checkUpgrade.py /etc/'updater'/", shell=True)
+            subprocess.call("sudo cp -r systemupdate/Files/module /etc/'updater'/", shell=True)
             return 1
         except:
             pass
@@ -71,7 +71,7 @@ def check():
                 subprocess.call("sudo cp systemupdate/Files/notifier.py /etc/'updater'/", shell=True)
                 subprocess.call("sudo cp systemupdate/Files/updateUninstall /bin/", shell=True)
                 subprocess.call("sudo cp systemupdate/Files/toBeInstalled.py /etc/'updater'/", shell=True)
-                subprocess.call("sudo cp systemupdate/Files/checkUpgrade.py /etc/'updater'/", shell=True)
+                subprocess.call("sudo cp -r systemupdate/Files/module /etc/'updater'/", shell=True)
                 return 1
             else:
                 subprocess.call("echo 'Too Many Errors occurred\nTry connecting to the internet and try installing\nOR\nYou can copy the complete installation files and try again' > errorLogs.txt",shell=True)
