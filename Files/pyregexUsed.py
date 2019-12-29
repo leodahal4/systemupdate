@@ -2,7 +2,7 @@ import re
 import subprocess
 
 
-def tryF():
+def updateSystem():
     # subprocess.call("apt update > update", shell=True)
     update = subprocess.check_output("apt update", shell=True)
     subprocess.call("clear", shell=True)
@@ -10,15 +10,17 @@ def tryF():
     return update
 
 
-updateResult = tryF()
-searchResult = re.search(r"\d ['p']['a']['c']['k']['a']['g']['e']['s']", str(updateResult))
-if searchResult is None:
-    print("\n\nNo packages are to be upgraded")
-else:
-    pass
-    #subprocess.call("apt upgrade", shell=True)
+def checkUpgrades():
+    updateResult = updateSystem()
+    searchQuery = re.search(r"\d ['p']['a']['c']['k']['a']['g']['e']['s']", str(updateResult))
+    if searchQuery is None:
+        print("\n\nNo packages are to be upgraded")
+    else:
+        print("\n\nThere are packages to be upgraded")
+        # subprocess.call("apt upgrade", shell=True)
 
-def numbers():
+
+def numberOfUpgrade():
     global updateResult
     searchNumber = "\d"
     searchQuery = searchNumber + " ['p']['a']['c']['k']['a']['g']['e']['s']"
@@ -37,7 +39,7 @@ def numbers():
         print("\n\n"+str(searchResult.group(0))+"\nare the number of packages which are to be upgraded")
         # subprocess.call("apt upgrade --yes", shell=True)
         if searchResult is None:
-
+            pass
     else:
         print("\n\nif ko ni else\n\nNo packages to be upgraded")
         # subprocess.call("apt update", shell=True)

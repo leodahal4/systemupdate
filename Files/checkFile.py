@@ -1,17 +1,7 @@
 import subprocess
 from os import path
 import urllib.request
-
-
-def checkInternet():
-
-    #check internet connection for downloading the repo for installation
-    host = 'http://google.com'
-    try:
-        urllib.request.urlopen(host)  # Python 3.x
-        return True
-    except:
-        return False
+from module import checkInternet
 
 
 def removeIfInstalled():
@@ -67,7 +57,8 @@ def check():
     else:
         try:
             #check internet connection for downloading
-            if checkInternet():
+            conn = checkInternet.check('github.com')
+            if conn:
                 removeIfInstalled()
                 subprocess.call("echo '# [+] Error Installing [+]'", shell=True)
                 time.sleep(2)
