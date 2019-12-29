@@ -7,7 +7,7 @@ def installPip():
         Install pip3 for installing notify2 as it is needed.
     """
     print("[+] Installing pip3 [+]")
-    subprocess.call("sudo apt-get install python3-pip", shell=True)
+    subprocess.call("sudo apt-get install python3-pip --yes", shell=True)
 
 
 def removeIfInstalled():
