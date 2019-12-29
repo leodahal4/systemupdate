@@ -84,7 +84,7 @@ function checkPython(){
 #check if user is root or not
 if [ $UID -ne 0 ]
 then
-  #if not ask for password
+  # if not ask for password if not root
   # echo "Enter your password:"
   sudo sync
 fi
