@@ -4,7 +4,7 @@
 
 import urllib.request
 
-def check(hostAddress = 'google.com'):
+def check(hostAddress = "https://www.google.com"):
     '''Check(hostAddress):
         This function takes an argument to open the site provided as argument.
         If none argument is given this function takes google.com as its default argument and tries to check the internet using this default one.
@@ -12,7 +12,7 @@ def check(hostAddress = 'google.com'):
     #check internet connection for downloading the repo for installation
     try:
         # Try to open the host Address and return True if connection is established
-        urllib.request.urlopen(hostAddresst)  # Python 3.x
+        urllib.request.urlopen(hostAddress)  # Python 3.x
         return True
     except:
         # Else return False
