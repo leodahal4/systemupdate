@@ -18,14 +18,12 @@ class stuffs():
         packages = searchResult.group(0)
         number = int(packages[0:1])
         if number != 0:
-
             while searchResult is not None:
                 searchNumber += "\d"
                 searchQuery = searchNumber + " ['p']['a']['c']['k']['a']['g']['e']['s']"
                 searchResult = re.search(r""+searchQuery+"", str(updateResult))
-
             else:
-                print("\n\n\nWhile vitra nei gayena")
+                pass
             print("\n\n"+str(searchResult.group(0))+"\nare the number of packages which are to be upgraded")
             # subprocess.call("apt upgrade --yes", shell=True)
             if searchResult is None:

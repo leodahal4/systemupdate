@@ -2,6 +2,13 @@ from os import path
 import subprocess
 
 
+def installPip():
+    """installPip
+        Install pip3 for installing notify2 as it is needed.
+    """
+    print("[+] Installing pip3 [+]")
+    subprocess.call("sudo apt-get install python3-pip", shell=True)
+
 
 def removeIfInstalled():
     #Remove the previous installed files(IF), which may cause trouble
@@ -12,13 +19,14 @@ def removeIfInstalled():
 def installNotify():
     #install the notify2 module on the system for notificating the user
     if not(path.exists("/usr/local/lib/python3.7/dist-packages/notify2.py")):
-        print("Installing Notify2 module for python3 ")
-        subprocess.call("pip3 install notify2", shell=True)
+        print("[+] Installing Notify2 module for python3 [+]")
+        subprocess.call("sudo pip3 install notify2", shell=True)
     else:
         pass
 
 def check():
-    installNotify() # install notify2 first
+    installPip() # install pip3 first
+    installNotify() # And then install notify2
     #check if there is the file to be installed or not
 
     #check on the normal directory
@@ -26,7 +34,7 @@ def check():
         try:
             removeIfInstalled()
             subprocess.call("sudo mkdir /etc/'updater'", shell=True)
-            subprocess.call("sudo echo -e 'clear\n python3 /etc/updater/toBeInstalled.py' > update", shell=True)
+            subprocess.call("sudo echo -e 'clear\nsudo python3 /etc/updater/toBeInstalled.py' > update", shell=True)
             subprocess.call("sudo mv update /bin/", shell=True)
             subprocess.call("sudo chmod +x /bin/update", shell=True)
             subprocess.call("sudo cp Files/notifier.py /etc/'updater'/", shell=True)
@@ -41,7 +49,7 @@ def check():
         try:
             removeIfInstalled()
             subprocess.call("sudo mkdir /etc/'updater'", shell=True)
-            subprocess.call("sudo echo -e 'clear\n python3 /etc/updater/toBeInstalled.py' > update", shell=True)
+            subprocess.call("sudo echo -e 'clear\nsudo python3 /etc/updater/toBeInstalled.py' > update", shell=True)
             subprocess.call("sudo mv update /bin/", shell=True)
             subprocess.call("sudo chmod +x /bin/update", shell=True)
             subprocess.call("sudo cp systemupdate/Files/notifier.py /etc/'updater'/", shell=True)
@@ -63,9 +71,9 @@ def check():
                 subprocess.call("echo '# Trying again'", shell=True)
                 time.sleep(2)
                 subprocess.call("echo '# Downloading from GitHub'", shell=True)
-                subprocess.call("git clone 'https://github.com/leodahal4/systemupdate.git'", shell=True)
+                subprocess.call("sudo git clone 'https://github.com/leodahal4/systemupdate.git'", shell=True)
                 subprocess.call("sudo mkdir /etc/'updater'", shell=True)
-                subprocess.call("sudo echo -e 'clear\n python3 /etc/updater/toBeInstalled.py' > update", shell=True)
+                subprocess.call("sudo echo -e 'clear\nsudo python3 /etc/updater/toBeInstalled.py' > update", shell=True)
                 subprocess.call("sudo mv update /bin/", shell=True)
                 subprocess.call("sudo chmod +x /bin/update", shell=True)
                 subprocess.call("sudo cp systemupdate/Files/notifier.py /etc/'updater'/", shell=True)

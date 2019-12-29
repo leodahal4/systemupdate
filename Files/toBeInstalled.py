@@ -15,7 +15,8 @@ def finish():
 
 def continueUpdating():
     """ContinueUpdating
-        This function is responsible for updating and upgrading the system."""
+        This function is responsible for updating and upgrading the system
+    """
 
     # create a started file for notifying the user that the System updating process has started
     subprocess.call("echo "" > /etc/updater/started", shell=True)
@@ -54,13 +55,13 @@ def continueUpdating():
         # reconsigure the dpkg if there were any errors
         subprocess.call('clear', shell=True)
         print('[+] Configuring dpkg if there are any errors [+]')
-        subprocess.call('dpkg --configure -a', shell=True)
+        subprocess.call('sudo dpkg --configure -a', shell=True)
 
     else:
         # reconsigure the dpkg if there were any errors
         subprocess.call('clear', shell=True)
         print('[+] Configuring dpkg if there are any errors [+]')
-        subprocess.call('dpkg --configure -a', shell=True)
+        subprocess.call('sudo dpkg --configure -a', shell=True)
 
         # upgrade the system
         subprocess.call('clear', shell=True)
