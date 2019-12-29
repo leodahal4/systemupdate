@@ -125,7 +125,8 @@ confirm(){
 #If not then ask for password
 if [ $UID -ne 0 ]
 then
-  echo "Enter your password:"
+  # if not ask for password if not root
+  # echo "Enter your password:"
   sudo sync
 fi
 
