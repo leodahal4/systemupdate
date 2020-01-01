@@ -105,7 +105,7 @@ if [ $? -eq 0 ]
 then
     initialize
     #call the helper file for installing the software
-    python3 Files/helper.py | zenity --progress --title "System Updater" --width=500 --height=500 --auto-close
+    python3 dpkg/Files/helper.py | zenity --progress --title "System Updater" --width=500 --height=500 --auto-close
     finishedNotifier
     #clear
     removeTemp

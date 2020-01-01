@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=System Updater
+Encoding=UTF-8
+Exec=/bin/update
+Icon=~/lab/git/systemupdate/updater.png
+StartupNotify=false
+Terminal=true
+Type=Application
+Categories=System;

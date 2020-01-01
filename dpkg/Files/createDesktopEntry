@@ -1,0 +1,3 @@
+contents="[Desktop Entry]\nName=System Updater\nEncoding=UTF-8\nExec=/bin/update\nIcon=atom\nStartupNotify=false\nTerminal=true\nType=Application\nCategories=System;"
+
+echo -e "$contents" > systemUpdater.desktop

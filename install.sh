@@ -89,7 +89,7 @@ installUpdater(){
 
   #copy all the necessary files on the /etc/updater folder
   echo "[+] Copying the files [+]"
-  sudo python3 Files/checkAndInstall.py
+  sudo python3 dpkg/Files/checkAndInstall.py
   sleep 4
   clear
   finishedNotifier
