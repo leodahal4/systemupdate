@@ -87,3 +87,5 @@ def check():
         except:
             subprocess.call("echo -e 'error in Internet\n"+print(checkInternet.check())+"' > errorLogs.txt",shell=True)
             return 0
+
+
